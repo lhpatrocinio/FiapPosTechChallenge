@@ -48,7 +48,10 @@ jobs:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_00CA1B0E042E43FC961DF1A6D82C97C8 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_4E6AD5A339E14C8C8EF96C0F09C47B7F }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_1DC92538FFDD4181A1958F5BB3D4E32F }}         
- 
+          
+      - name: Login no Azure Container Registry (ACR)
+        run: echo "${{ secrets.ACR_PASSWORD }}" | docker login acrinfiniteloops.azurecr.io -u ${{ secrets.ACR_USERNAME }} --password-stdin
+        
       - name: Build da imagem
         run: docker build -t acrinfiniteloops.azurecr.io/core.postech8nett:latest -f Core.PosTech8Nett/src/Core.PosTech8Nett.Api/Dockerfile Core.PosTech8Nett
 
