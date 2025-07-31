@@ -50,7 +50,7 @@ jobs:
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_1DC92538FFDD4181A1958F5BB3D4E32F }}         
  
       - name: Build da imagem
-        run: docker build -f src/Core.PosTech8Nett.Api/Dockerfile -t acrinfiniteloops.azurecr.io/core.postech8nett:latest .
+        run: docker build -f Core.PosTech8Nett/src/Core.PosTech8Nett.Api/Dockerfile -t acrinfiniteloops.azurecr.io/core.postech8nett:latest .
 
       - name: Push da imagem
         run: docker push acrinfiniteloops.azurecr.io/core.postech8nett:latest    
