@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Clonar repositório
+      - name: Checkout repositório
         uses: actions/checkout@v4
 
       - name: Instalar .NET SDK
@@ -47,14 +47,20 @@ jobs:
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_00CA1B0E042E43FC961DF1A6D82C97C8 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_4E6AD5A339E14C8C8EF96C0F09C47B7F }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_1DC92538FFDD4181A1958F5BB3D4E32F }}
-          
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_1DC92538FFDD4181A1958F5BB3D4E32F }}         
+ 
+      - name: Build da imagem
+        run: docker build -t acrinfiniteloops.azurecr.io/core.postech8nett:latest .
+
+      - name: Push da imagem
+        run: docker push acrinfiniteloops.azurecr.io/core.postech8nett:latest    
+        
       - name: Implantar aplicativo no azure
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'Fiap'
           slot-name: 'Production'
-          package: ${{ github.workspace }}/publish
+          images: acrinfiniteloops.azurecr.io/core.postech8nett:latest
 
       # - name: Notify Slack after deploy (descomente e configure o webhook)
       #   uses: slackapi/slack-github-action@v1.24.0
