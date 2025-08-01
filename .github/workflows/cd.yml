@@ -61,7 +61,7 @@ jobs:
       - name: Implantar aplicativo no azure
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'Fiap'
+          app-name: 'InfiniteLoopsApp'
           slot-name: 'Production'
           images: acrinfiniteloops.azurecr.io/core.postech8nett:latest
 
