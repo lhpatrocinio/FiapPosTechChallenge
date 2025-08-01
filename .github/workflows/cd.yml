@@ -59,11 +59,13 @@ jobs:
         run: docker push acrinfiniteloops.azurecr.io/core.postech8nett:latest    
         
       - name: Implantar aplicativo no azure
-        uses: azure/webapps-deploy@v3
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
         with:
           app-name: 'InfiniteLoopsApp'
           slot-name: 'Production'
-          images: acrinfiniteloops.azurecr.io/core.postech8nett:latest
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_86af15ef91c249dd95d638f69275bf99 }}
+          images: 'acrinfiniteloops.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_434cc48bf1804a76aec7fdd0b66b74e0 }}/core.postech8nett:${{ github.sha }}'
 
       # - name: Notify Slack after deploy (descomente e configure o webhook)
       #   uses: slackapi/slack-github-action@v1.24.0
