@@ -62,7 +62,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'InfiniteLoopsApp'
+          app-name: 'fiapapp'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_86af15ef91c249dd95d638f69275bf99 }}
           images: 'acrinfiniteloops.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_434cc48bf1804a76aec7fdd0b66b74e0 }}/core.postech8nett:${{ github.sha }}'
