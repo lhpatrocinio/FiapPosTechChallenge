@@ -13,6 +13,7 @@ using Core.PosTech8Nett.Api.Infra.Swagger.Extension;
 using Core.PosTech8Nett.Api.Infra.Swagger.Middleware;
 using Core.PosTech8Nett.Api.Infra.Versioning.Extension;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +21,7 @@ using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddSerilogConfiguration();
+builder.WebHost.UseUrls("http://*:80");
 
 builder.Services.AddMvcCore(options => options.AddLogRequestFilter());
 builder.Services.AddVersioning();
