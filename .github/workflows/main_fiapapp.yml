@@ -25,15 +25,15 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: acrinfiniteloops.azurecr.io/
-          username: ${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_CFCBCB5B3DC540B5867845D61909747E }}
-          password: ${{ secrets.AZUREAPPSERVICE_CONTAINERPASSWORD_198280E4663F4D8FA1624020C874E888 }}
+          username: ${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_4C9453DC752143BEB513441BCAEB6553 }}
+          password: ${{ secrets.AZUREAPPSERVICE_CONTAINERPASSWORD_26941D8CD46845528EEA8886411A9EF2 }}
 
       - name: Build and push container image to registry
         uses: docker/build-push-action@v3
         with:
           context: .
           push: true
-          tags: acrinfiniteloops.azurecr.io/${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_CFCBCB5B3DC540B5867845D61909747E }}/acrInfiniteLoops/core.postech8nett:${{ github.sha }}
+          tags: acrinfiniteloops.azurecr.io/${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_4C9453DC752143BEB513441BCAEB6553 }}/acrinfiniteloops/core.postech8nett:${{ github.sha }}
           file: ./Dockerfile
 
   deploy:
@@ -50,9 +50,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_326784280D0A4DB18FD14C351FB8BB4D }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_6C8CD01E70E541E3AA9DDF54A67EF512 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_6CF3692D7D614CDFB243711469466457 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_C07217D9F7AA49FAA2DC1A3ECB614DD7 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_94DFCC8584DC446C91368F1FE259E490 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4251CFBE846B40F8BE2187A1667A6ECD }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
@@ -60,5 +60,5 @@ jobs:
         with:
           app-name: 'fiapapp'
           slot-name: 'Production'
-          images: 'acrinfiniteloops.azurecr.io/${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_CFCBCB5B3DC540B5867845D61909747E }}/acrInfiniteLoops/core.postech8nett:${{ github.sha }}'
+          images: 'acrinfiniteloops.azurecr.io/${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_4C9453DC752143BEB513441BCAEB6553 }}/acrinfiniteloops/core.postech8nett:${{ github.sha }}'
           
