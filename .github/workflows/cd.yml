@@ -65,7 +65,7 @@ jobs:
           app-name: 'fiapapp'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_86af15ef91c249dd95d638f69275bf99 }}
-          images: 'acrinfiniteloops.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_434cc48bf1804a76aec7fdd0b66b74e0 }}/core.postech8nett:${{ github.sha }}'
+          images: 'acrinfiniteloops.azurecr.io/${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_4C9453DC752143BEB513441BCAEB6553 }}/acrinfiniteloops/core.postech8nett:${{ github.sha }}'
 
       # - name: Notify Slack after deploy (descomente e configure o webhook)
       #   uses: slackapi/slack-github-action@v1.24.0
