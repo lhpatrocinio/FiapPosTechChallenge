@@ -45,9 +45,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_00CA1B0E042E43FC961DF1A6D82C97C8 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_4E6AD5A339E14C8C8EF96C0F09C47B7F }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_1DC92538FFDD4181A1958F5BB3D4E32F }}         
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_749DE33B04D64EF59BAED6941D8F52A8 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_417260B2EB6C4F1E911C3487C809EE08 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_F609D3FC0FF24370AA9E0D11BED1C567 }}       
           
       - name: Login no Azure Container Registry (ACR)
         run: echo "${{ secrets.ACR_PASSWORD }}" | docker login acrinfiniteloops.azurecr.io -u ${{ secrets.ACR_USERNAME }} --password-stdin
@@ -65,7 +65,7 @@ jobs:
           app-name: 'fiapapp'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_86af15ef91c249dd95d638f69275bf99 }}
-          images: 'acrinfiniteloops.azurecr.io/${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_4C9453DC752143BEB513441BCAEB6553 }}/acrinfiniteloops/core.postech8nett:${{ github.sha }}'
+          tags: acrinfiniteloops.azurecr.io/${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_6A522BC2E8AB4F6A8FF3D6648AE2E785 }}/acrinfiniteloops/core.postech8nett:${{ github.sha }}
 
       # - name: Notify Slack after deploy (descomente e configure o webhook)
       #   uses: slackapi/slack-github-action@v1.24.0
